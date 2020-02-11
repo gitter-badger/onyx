@@ -1,4 +1,7 @@
 #pragma once
+#include "Layer.h"
+
+#include <vector>
 
 namespace Onyx::Engine::Components
 {
@@ -6,5 +9,9 @@ namespace Onyx::Engine::Components
   {
   public:
     LayerStack();
+
+    void PushLayer(Layer* layer);
+  private:
+    std::vector<Layer*> layers_;
   };
 }

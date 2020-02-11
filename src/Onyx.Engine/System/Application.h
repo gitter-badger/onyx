@@ -3,6 +3,8 @@
 #include "Event.h"
 #include "..\Components\LayerStack.h"
 
+using namespace Onyx::Engine::Components;
+
 namespace Onyx::Engine::System
 {
   class Application
@@ -14,7 +16,7 @@ namespace Onyx::Engine::System
     void Run();
   private:
     std::unique_ptr<Window> window_;
-    Onyx::Engine::Components::LayerStack layer_stack_;
+    LayerStack layer_stack_;
     bool is_running_;
 
     void HandleEvent(const Event& event);
