@@ -9,4 +9,12 @@ namespace Onyx::Engine::Components
   {
     layers_.push_back(layer);
   }
+
+  void LayerStack::UpdateLayers()
+  {
+    for (auto layer : layers_)
+    {
+      layer->Update();
+    }
+  }
 }

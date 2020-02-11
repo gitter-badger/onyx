@@ -11,6 +11,7 @@ namespace Onyx::Engine::Components
     LayerStack();
 
     void PushLayer(Layer* layer);
+    void UpdateLayers();
   private:
     std::vector<Layer*> layers_;
   };

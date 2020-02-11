@@ -17,7 +17,7 @@ namespace Onyx::Engine::System
     void Run();
   private:
     std::unique_ptr<Window> window_;
-    LayerStack layer_stack_;
+    std::unique_ptr<LayerStack> layer_stack_;
     bool is_running_;
 
     void HandleEvent(const Event& event);

@@ -6,5 +6,8 @@ namespace Onyx::Engine::Components
   {
   public:
     Layer();
+    virtual ~Layer() = default;
+
+    virtual void Update() const = 0;
   };
 }

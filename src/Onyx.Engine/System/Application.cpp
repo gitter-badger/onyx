@@ -9,7 +9,7 @@ namespace Onyx::Engine::System
 		window_ = Window::Create(WindowProperties());
 		window_->OnEvent(std::bind(&Application::HandleEvent, this, std::placeholders::_1));
 
-		layer_stack_ = Onyx::Engine::Components::LayerStack();
+		layer_stack_ = std::make_unique<LayerStack>();
 	}
 
 	Application::~Application()
@@ -19,7 +19,7 @@ namespace Onyx::Engine::System
 
 	void Application::AddLayer(Layer* layer)
 	{
-		layer_stack_.PushLayer(layer);
+		layer_stack_->PushLayer(layer);
 	}
 
 	void Application::Run()
@@ -27,6 +27,7 @@ namespace Onyx::Engine::System
 		is_running_ = true;
 		while (is_running_)
 		{
+			layer_stack_->UpdateLayers();
 			window_->Update();
 		}
 	}
