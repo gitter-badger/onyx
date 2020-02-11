@@ -13,6 +13,7 @@ namespace Onyx::Engine::System
     Application();
     ~Application();
 
+    void AddLayer(Layer* layer);
     void Run();
   private:
     std::unique_ptr<Window> window_;

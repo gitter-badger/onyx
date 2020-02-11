@@ -17,6 +17,11 @@ namespace Onyx::Engine::System
 
 	}
 
+	void Application::AddLayer(Layer* layer)
+	{
+		layer_stack_.PushLayer(layer);
+	}
+
 	void Application::Run()
 	{
 		is_running_ = true;
@@ -30,11 +35,11 @@ namespace Onyx::Engine::System
 	{
 		switch (event.GetType())
 		{
-		case EventType::WindowClose:
-		{
-			ONYX_LOG_TRACE("Window closed event");
-			is_running_ = false;
-		}
+			case EventType::WindowClose:
+			{
+				ONYX_LOG_TRACE("Window closed event");
+				is_running_ = false;
+			}
 		}
 	}
 }
