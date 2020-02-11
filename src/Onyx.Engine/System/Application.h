@@ -1,5 +1,7 @@
 #pragma once
-#include "..\pch.h"
+#include "Window.h"
+#include "Event.h"
+#include "..\Components\LayerStack.h"
 
 namespace Onyx::Engine::System
 {
@@ -11,8 +13,9 @@ namespace Onyx::Engine::System
 
     void Run();
   private:
-    std::unique_ptr<Window> m_Window;
-    bool m_Running;
+    std::unique_ptr<Window> window_;
+    Onyx::Engine::Components::LayerStack layer_stack_;
+    bool is_running_;
 
     void HandleEvent(const Event& event);
   };

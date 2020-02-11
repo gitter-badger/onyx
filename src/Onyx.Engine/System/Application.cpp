@@ -6,8 +6,10 @@ namespace Onyx::Engine::System
 	Application::Application()
 	{
 		ONYX_LOG_TRACE("Onyx Engine");
-		m_Window = Window::Create(WindowProperties());
-		m_Window->OnEvent(std::bind(&Application::HandleEvent, this, std::placeholders::_1));
+		window_ = Window::Create(WindowProperties());
+		window_->OnEvent(std::bind(&Application::HandleEvent, this, std::placeholders::_1));
+
+		layer_stack_ = Onyx::Engine::Components::LayerStack();
 	}
 
 	Application::~Application()
@@ -17,10 +19,10 @@ namespace Onyx::Engine::System
 
 	void Application::Run()
 	{
-		m_Running = true;
-		while (m_Running)
+		is_running_ = true;
+		while (is_running_)
 		{
-			m_Window->Update();
+			window_->Update();
 		}
 	}
 
@@ -31,7 +33,7 @@ namespace Onyx::Engine::System
 		case EventType::WindowClose:
 		{
 			ONYX_LOG_TRACE("Window closed event");
-			m_Running = false;
+			is_running_ = false;
 		}
 		}
 	}
