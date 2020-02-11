@@ -10,7 +10,7 @@ namespace Onyx::Engine::System
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProperties& properties)
-		: m_Properties(properties)
+		: window_properties_(properties)
 	{
 		Initialise();
 	}
@@ -20,10 +20,20 @@ namespace Onyx::Engine::System
 		Shutdown();
 	}
 
+	std::string WindowsWindow::GetTitle() const
+	{
+		return window_properties_.Title;
+	}
+
 	void WindowsWindow::SetTitle(const std::string& title)
 	{
-		m_Properties.Title = title;
-		glfwSetWindowTitle(m_Handle, m_Properties.Title.c_str());
+		window_properties_.Title = title;
+		glfwSetWindowTitle(window_, window_properties_.Title.c_str());
+	}
+
+	void WindowsWindow::OnEvent(const WindowProperties::DispatchEventFunc& callback)
+	{
+		window_properties_.DispatchEvent = callback;
 	}
 
 	void WindowsWindow::Update()
@@ -39,11 +49,11 @@ namespace Onyx::Engine::System
 			return;
 		}
 
-		m_Handle = glfwCreateWindow(m_Properties.Width, m_Properties.Height, m_Properties.Title.c_str(), nullptr, nullptr);
-		glfwSetWindowUserPointer(m_Handle, &m_Properties);
+		window_ = glfwCreateWindow(window_properties_.Width, window_properties_.Height, window_properties_.Title.c_str(), nullptr, nullptr);
+		glfwSetWindowUserPointer(window_, &window_properties_);
 		glfwSwapInterval(1); // TODO: Don't hardcode V-Sync
 
-		glfwSetWindowCloseCallback(m_Handle, [](auto window)
+		glfwSetWindowCloseCallback(window_, [](auto window)
 		{
 			auto properties = (WindowProperties*)glfwGetWindowUserPointer(window);
 			WindowCloseEvent event;
@@ -53,7 +63,7 @@ namespace Onyx::Engine::System
 
 	void WindowsWindow::Shutdown()
 	{
-		glfwDestroyWindow(m_Handle);
+		glfwDestroyWindow(window_);
 		glfwTerminate();
 	}
 }

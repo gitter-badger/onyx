@@ -11,13 +11,13 @@ namespace Onyx::Engine::System
 		WindowsWindow(const WindowProperties& properties);
 		~WindowsWindow();
 
-		std::string GetTitle() const override { return m_Properties.Title; }
+		std::string GetTitle() const override;
 		void SetTitle(const std::string& title) override;
-		void OnEvent(const WindowProperties::DispatchEventFunc& callback) override { m_Properties.DispatchEvent = callback; }
+		void OnEvent(const WindowProperties::DispatchEventFunc& callback) override;
 		void Update() override;
 	private:
-		WindowProperties m_Properties;
-		GLFWwindow* m_Handle;
+		WindowProperties window_properties_;
+		GLFWwindow* window_;
 
 		void Initialise();
 		void Shutdown();
