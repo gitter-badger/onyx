@@ -13,9 +13,7 @@ namespace Onyx::Engine::System
 	}
 
 	Application::~Application()
-	{
-
-	}
+	{}
 
 	void Application::AddLayer(Layer* layer)
 	{
@@ -36,11 +34,10 @@ namespace Onyx::Engine::System
 	{
 		switch (event.GetType())
 		{
-			case EventType::WindowClose:
-			{
-				ONYX_LOG_TRACE("Window closed event");
-				is_running_ = false;
-			}
+		case EventType::WindowClose:
+			ONYX_LOG_TRACE("Window closed event");
+			is_running_ = false;
+			break;
 		}
 	}
 }
