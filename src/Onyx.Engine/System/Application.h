@@ -1,9 +1,11 @@
 #pragma once
 #include "Window.h"
 #include "Event.h"
+#include "..\Diagnostics\HUDLayer.h"
 #include "..\Components\LayerStack.h"
 
 using namespace Onyx::Engine::Components;
+using namespace Onyx::Engine::Diagnostics;
 
 namespace Onyx::Engine::System
 {

@@ -20,6 +20,11 @@ namespace Onyx::Engine::System
 		Shutdown();
 	}
 
+	void* WindowsWindow::GetWindowHandler() const
+	{
+		return window_;
+	}
+
 	std::string WindowsWindow::GetTitle() const
 	{
 		return window_properties_.Title;

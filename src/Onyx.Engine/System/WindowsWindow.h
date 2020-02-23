@@ -11,6 +11,7 @@ namespace Onyx::Engine::System
 		WindowsWindow(const WindowProperties& properties);
 		~WindowsWindow();
 
+		void* GetWindowHandler() const override;
 		std::string GetTitle() const override;
 		void SetTitle(const std::string& title) override;
 		void OnEvent(const WindowProperties::DispatchEventFunc& callback) override;

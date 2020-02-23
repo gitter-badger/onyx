@@ -10,6 +10,8 @@ namespace Onyx::Engine::System
 		window_->OnEvent(std::bind(&Application::HandleEvent, this, std::placeholders::_1));
 
 		layer_stack_ = std::make_unique<LayerStack>();
+
+		auto hud = new HUDLayer(window_);
 	}
 
 	Application::~Application()
